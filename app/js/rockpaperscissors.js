@@ -26,11 +26,9 @@ function getPlayerMove(move) {
         move = move;
     } else if (move == null) {
         move = getInput ();
-        return move;
     } else {
-        move = getInput ();
-        return move;
-    }
+        move = getInput ();   
+    } return move;
 }
 
 function getComputerMove(move) {
@@ -38,11 +36,9 @@ function getComputerMove(move) {
         move = move;
     } else if (move == null) {
         move = randomPlay;
-        return move;
     } else {
         move = randomPlay;
-        return move;
-    }   
+    } return move;
 }
 
 function getWinner(playerMove,computerMove) {
