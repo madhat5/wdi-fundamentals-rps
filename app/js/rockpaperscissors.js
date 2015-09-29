@@ -7,6 +7,7 @@ function getInput() {
     console.log("Please choose either 'rock', 'paper', or 'scissors'.")
     return prompt();
 }
+
 function randomPlay() {
     var randomNumber = Math.random();
     if (randomNumber < 0.33) {
@@ -58,53 +59,52 @@ function getComputerMove(move) {
 }
 
 function getWinner(playerMove,computerMove) {
-    playerMove = getPlayerMove;
-    computerMove = getComputerMove;
     var winner;
-    if (playerMove == computerMove) {
+    if (playerMove === computerMove) {
         winner = 'tie';
         return winner;
-    }
-    while (playerMove !== computerMove) {
+    } else {
         switch (playerMove) {
             case 'rock':
-                if (computerMove == 'scissors') {
+                if (computerMove === 'scissors') {
                     winner = 'player';
                 } else { 
                     winner = 'computer';
                 } 
-                return winner;
             case 'scissors':
-                if (computerMove == 'paper') {
+                if (computerMove === 'paper') {
                     winner = 'player';
                 } else { 
                     winner = 'computer';
                 } 
-                return winner;
             case 'paper':
-                if (computerMove == 'rock') {
+                if (computerMove === 'rock') {
                     winner = 'player';
                 } else { 
                     winner = 'computer';
-                } return winner;
+                }
         }
     } 
+    return winner;
 }
 
 function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
-    for (var x = 0; x <= 5; x += 1) {
-        if (getWinner == 'player') {
-            playerWins = x;
-        } else if (getWinner == 'computer') {
-            computerWins = x;
+    var winner;
+    while ((playerWins <= 5) || (computerWins <= 5)) {
+        var playerMove = getInput();
+        var computerMove = randomPlay();
+        winner = getWinner(playerMove, computerMove);
+        if (winner === 'player') {
+            playerWins ++;
+        } else if (winner === 'computer') {
+            computerWins ++;
         } else {
             return 'tie';
         }
         console.log('Player choice ' + playerMove + 'vs. Computer choice' + computerMove);
         console.log('Player score ' + playerWins + 'vs. Computer score ' + computerWins);
-    } return [playerWins, computerWins];
+    } return winner;
 }
-
